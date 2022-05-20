@@ -7,19 +7,19 @@ Description: Measurements of electric power consumption in one household with a 
 The four plots with their codes are shown below. 
 
 
-### Plot 1
+# Plot 1
 library("data.table")
 data<-"household_power_consumption.txt"
 electricDT<- fread(data,na.strings="?")
-# Change Date Column to Date Type
+### Change Date Column to Date Type
 electricDT[, Date := lapply(.SD, as.Date, "%d/%m/%Y"), .SDcols = c("Date")]
 
-# we want from 2007-02-01 to 2007-02-02 , so we filter the dates
+### we want from 2007-02-01 to 2007-02-02 , so we filter the dates
 electricDT <- electricDT[(Date >= "2007-02-01") & (Date <= "2007-02-02")]
 
 png("plot1.png", width=480, height=480)
 
-##Finally  Plot 1
+###Finally  Plot 1
 hist(electricDT[, Global_active_power], main="Global Active Power", 
      xlab="Global Active Power (kilowatts)", ylab="Frequency", col="Red")
 
